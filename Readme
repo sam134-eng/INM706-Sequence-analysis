@@ -1,0 +1,32 @@
+Sentiment Analysis with TF-IDF and Logistic Regression in PyTorchThis repository contains Python code for performing sentiment analysis on textual data using TF-IDF for feature extraction and a Logistic Regression model implemented in PyTorch. The project demonstrates a complete pipeline from data preprocessing to model training and evaluation.Project DescriptionThis project aims to classify text into three sentiment categories: Negative, Neutral, and Positive. It leverages a classic NLP feature engineering technique (TF-IDF) and applies it within a modern deep learning framework (PyTorch) using a simple linear model. This serves as a robust and interpretable baseline for sentiment analysis tasks.FeaturesData Preprocessing: Includes text cleaning (removing URLs, mentions, hashtags, non-alphabetic characters), lowercasing, tokenization, and stopword removal.TF-IDF Feature Extraction: Converts cleaned text into numerical TF-IDF vectors.PyTorch Logistic Regression Model: A simple neural network with a single linear layer for multi-class classification.Training Pipeline: Implements a standard PyTorch training loop with nn.CrossEntropyLoss and Adam optimizer.Evaluation: Provides a comprehensive classification_report (precision, recall, F1-score, accuracy) and a confusion matrix to assess model performance.Getting StartedFollow these instructions to set up the project and run the code.PrerequisitesEnsure you have Python 3.7+ installed.InstallationClone the repository (if applicable):# If this code were in a GitHub repo, you'd clone it:
+# git clone <repository_url>
+# cd <repository_name>
+Note: For this specific Canvas environment, you'll be running the code directly.Install the required Python packages:It's highly recommended to use a virtual environment.# Create a virtual environment
+python -m venv venv
+# Activate the virtual environment
+# On Windows: .\venv\Scripts\activate
+# On macOS/Linux: source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+requirements.txt content:numpy
+pandas
+scikit-learn
+nltk
+torch
+DataDataset:The code expects a CSV file named Tweets.csv in the same directory as the script. This file should contain at least two columns:text: The textual content (e.g., tweet).airline_sentiment: The sentiment label ('positive', 'neutral', or 'negative').If Tweets.csv is not found, the script will automatically create a small dummy DataFrame for demonstration purposes. For real-world results, please provide the actual dataset.NLTK Data:The script automatically downloads necessary NLTK data (punkt for tokenization and stopwords for stopword removal) upon first run. Ensure you have an internet connection for this step.Running the CodeTo execute the sentiment analysis pipeline:Simply run the Python script:python your_sentiment_analysis_script_name.py
+(Replace your_sentiment_analysis_script_name.py with the actual name of your Python file containing the code.)Expected OutputUpon successful execution, the script will print:Messages indicating NLTK data downloads (if necessary).A message if Tweets.csv is not found and a dummy DataFrame is being used.Training epoch loss messages.A classification_report showing precision, recall, F1-score, and support for each sentiment class (Negative, Neutral, Positive), along with overall accuracy and averaged metrics.A confusion matrix (if visualization code is present and executed, though the provided code snippet does not include plotting).Example classification_report output:TF-IDF + PyTorch Logistic Regression Performance:
+              precision    recall  f1-score   support
+
+    Negative       0.70      0.99      0.82      1835
+     Neutral       0.78      0.20      0.31       620
+    Positive       0.89      0.32      0.46       473
+
+    accuracy                           0.72      2928
+   macro avg       0.79      0.50      0.53      2928
+weighted avg       0.75      0.72      0.66      2928
+Project Structure (Conceptual).
+├── your_sentiment_analysis_script_name.py  # Main Python code
+├── Tweets.csv                              # Your dataset (optional, dummy used if not found)
+└── requirements.txt                        # Python dependencies
+Potential ImprovementsAdvanced Text Embeddings: Integrate pre-trained word embeddings (e.g., GloVe, Word2Vec) or contextual embeddings (e.g., BERT, RoBERTa) for richer semantic representations.Deep Learning Architectures: Implement more complex models like LSTMs, GRUs, or Transformer networks for better capture of sequential dependencies.Addressing Class Imbalance: Apply techniques like oversampling, undersampling, class weighting, or Focal Loss to improve performance on minority classes.Hyperparameter Tuning: Conduct systematic hyperparameter optimization using tools like Grid Search or Optuna.Model Interpretability: Add visualizations or techniques (e.g., SHAP, LIME) to understand which features/words contribute most to predictions.Deployment: Explore deploying the trained model as a web service for real-time sentiment prediction.
